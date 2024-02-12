@@ -1,0 +1,11 @@
+{
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.functionReturnTypes": false,
+    "html.filetypes": [
+        "html",
+        "handlebars",
+        "htmldjango",
+        "razor"
+    ],
+    "snippets.ultisnips.pythonPrompt": false,
+}
