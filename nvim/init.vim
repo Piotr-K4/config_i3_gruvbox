@@ -27,6 +27,8 @@ Plug 'epwalsh/obsidian.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-orgmode/orgmode'
+Plug 'nvim-orgmode/org-bullets.nvim'
 call plug#end()            
 filetype plugin indent on    
 colorscheme gruvbox-material 
@@ -91,7 +93,7 @@ nmap <silent> gr <Plug>(coc-references)
 
 lua << EOF
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { "javascript", "python", "lua", "vim", "json", "html", "tsx", "markdown" },
+    ensure_installed = { "javascript", "python", "lua", "vim", "json", "html", "tsx", "markdown", "org" },
     sync_install = false,
     auto_install = true,
     highlight = {
@@ -105,8 +107,12 @@ lua << EOF
 require("obsidian").setup({
     workspaces = {
     {
-      name = "Notatki Zettelkasten",
+      name = "zettelkasten",
       path = "~/Documents/Osobiste/Notatki Zettelkasten",
+    },
+    {
+      name = "osobiste",
+      path = "~/Documents/Osobiste/Osobiste notatki",
     },
     },
     templates = {
@@ -193,4 +199,21 @@ lua << EOF
     }),
   })
 
+EOF
+
+lua << EOF
+
+require('orgmode').setup_ts_grammar() 
+
+require('orgmode').setup({
+    org_agenda_files = {'~/notes/*.org',},
+    org_default_notes_file = '~/notes/refile.org',
+})
+
+require('org-bullets').setup({
+symbols = {
+     headlines = { "◉", "○", "✸", "✿" },
+    },
+list = "•",
+})
 EOF
